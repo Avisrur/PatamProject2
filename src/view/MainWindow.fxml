@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import view.BoardDisplayer?>
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox prefHeight="19.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Status" />
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="59.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Solve" />
+            <Button mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="60.0" text="Save" />
+         </children>
+      </VBox>
+   </right>
+   <center>
+       <BoardDisplayer fx:id="boardDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" />
+      <!--<Canvas height="300.0" width="300.0" BorderPane.alignment="CENTER" />-->
+   </center>
+</BorderPane>
