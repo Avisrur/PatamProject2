@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import view.BoardDisplayer?>
@@ -9,18 +10,24 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open Level" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveLevel" text="Save Level" />
+                  <MenuItem mnemonicParsing="false" onAction="#changeTheme" text="Change Theme..." />
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Others">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#showTopTen" text="Top 10" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+                  <Menu mnemonicParsing="false" onAction="#solveLevel" text="Solve Level">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
             </items>
           </Menu>
         </menus>
@@ -33,16 +40,15 @@
          </children>
       </HBox>
    </bottom>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="59.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Solve" />
-            <Button mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="60.0" text="Save" />
-         </children>
-      </VBox>
-   </right>
    <center>
-       <BoardDisplayer fx:id="boardDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" />
-      <!--<Canvas height="300.0" width="300.0" BorderPane.alignment="CENTER" />-->
+       <BoardDisplayer height="300.0" width="300.0" BorderPane.alignment="CENTER"
+                       FPipeFileName="../resources/FPipe.jpg"
+                       LPipeFileName="../resources/LPipe.jpg"
+                       JPipeFileName="../resources/JPipe.jpg"
+                       sevenPipeFileName="../resources/7Pipe.jpg"
+                       dashPipeFileName="../resources/-Pipe.jpg"
+                       pipeLinePipeFileName="../resources/pipeLinePipe.jpg"
+                       wallFileName="../resources/wall.jpg"/>
+      <!--<Canvas height="400.0" width="400.0" BorderPane.alignment="CENTER"/>-->
    </center>
 </BorderPane>

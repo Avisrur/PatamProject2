@@ -6,6 +6,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable{
@@ -19,6 +20,16 @@ public class MainWindowController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources){
         this.boardDisplayer.setBoard(boardData);
+
+        this.boardDisplayer.setOnMouseClicked(event -> {
+            double x = event.getSceneX();
+            double y = event.getSceneY();
+
+            HashMap<String, Number>[][] boardCoordinates = this.boardDisplayer.getCoordinatesPixels();
+
+            // extract the clicked image.
+            if ()
+        });
     }
     public void Message(String n) {
         switch(n){
@@ -44,7 +55,7 @@ public class MainWindowController implements Initializable{
     public void loadLevel(){
         FileChooser fc = new FileChooser();
         fc.setTitle("Open Level");
-        fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("txt files only","txt"));
+        fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text files only","*.txt"));
         File chosen = fc.showOpenDialog(null);
 
         if (chosen != null){
