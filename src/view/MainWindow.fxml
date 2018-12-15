@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import view.BoardDisplayer?>
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open Level" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveLevel" text="Save Level" />
+                  <MenuItem mnemonicParsing="false" onAction="#changeTheme" text="Change Theme..." />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Others">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showTopTen" text="Top 10" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                  <Menu mnemonicParsing="false" onAction="#solveLevel" text="Solve Level">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox prefHeight="19.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Status" />
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+       <BoardDisplayer height="300.0" width="300.0" BorderPane.alignment="CENTER"
+                       FPipeFileName="../resources/FPipe.jpg"
+                       LPipeFileName="../resources/LPipe.jpg"
+                       JPipeFileName="../resources/JPipe.jpg"
+                       sevenPipeFileName="../resources/7Pipe.jpg"
+                       dashPipeFileName="../resources/-Pipe.jpg"
+                       pipeLinePipeFileName="../resources/pipeLinePipe.jpg"
+                       wallFileName="../resources/wall.jpg"/>
+      <!--<Canvas height="400.0" width="400.0" BorderPane.alignment="CENTER"/>-->
+   </center>
+</BorderPane>
