@@ -14,7 +14,6 @@ public class PipeBoardView {
     private Location end;
 
     public PipeBoardView(Double height, Double width, PipeView[][] board) {
-
     }
 
 
