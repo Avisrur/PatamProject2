@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import view.BoardDisplayer?>
-<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="boardDisplayer" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -41,14 +45,16 @@
       </HBox>
    </bottom>
    <center>
-       <BoardDisplayer height="300.0" width="300.0" BorderPane.alignment="CENTER"
-                       FPipeFileName="../resources/FPipe.jpg"
-                       LPipeFileName="../resources/LPipe.jpg"
-                       JPipeFileName="../resources/JPipe.jpg"
-                       sevenPipeFileName="../resources/7Pipe.jpg"
-                       dashPipeFileName="../resources/-Pipe.jpg"
-                       pipeLinePipeFileName="../resources/pipeLinePipe.jpg"
-                       wallFileName="../resources/wall.jpg"/>
-      <!--<Canvas height="400.0" width="400.0" BorderPane.alignment="CENTER"/>-->
+       <!--<BoardDisplayer fx:id="boardDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER"
+                       FPipeFileName="./resources/FPipe.png"
+                       LPipeFileName="./resources/LPipe.png"
+                       JPipeFileName="./resources/JPipe.png"
+                       sevenPipeFileName="./resources/7Pipe.png"
+                       dashPipeFileName="./resources/-Pipe.png"
+                       pipeLinePipeFileName="./resources/pipeLinePipe.png"
+                       wallFileName="./resources/wall.jpg"
+                       startFileName="./resources/Start.png"
+                       goalFileName="./resources/Goal.png"/>-->
+      <Canvas height="400.0" width="400.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
