@@ -12,11 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
-/**
- * Created by lidor.rosencovich on 10/12/2018.
- */
 public class BoardDisplayer extends Canvas {
-
     private String board;
     private StringProperty FPipeFileName;
     private StringProperty LPipeFileName;
@@ -25,9 +21,9 @@ public class BoardDisplayer extends Canvas {
     private StringProperty dashPipeFileName;
     private StringProperty pipeLinePipeFileName;
     private StringProperty wallFileName;
+    private PipeBoardView pipesBoard;
     private StringProperty startFileName;
     private StringProperty goalFileName;
-
     private HashMap<String, Number>[][] coordinatesPixels;
 
     @Override
@@ -102,9 +98,6 @@ public class BoardDisplayer extends Canvas {
         goalFileName = new SimpleStringProperty();
     }
 
-    private void InitCoordinatesPixels(int row, int col) {
-        coordinatesPixels = new HashMap[row][col];
-    }
 
     public String getWallFileName() {
         return wallFileName.get();
@@ -167,13 +160,6 @@ public class BoardDisplayer extends Canvas {
         redraw();
     }
 
-    public HashMap<String, Number>[][] getCoordinatesPixels() {
-        return coordinatesPixels;
-    }
-
-    public void setCoordinatesPixels(HashMap<String, Number>[][] coordinatesPixels) {
-        this.coordinatesPixels = coordinatesPixels;
-    }
 
     public void redraw() {
         if (board != null){
@@ -185,7 +171,6 @@ public class BoardDisplayer extends Canvas {
             double w = W / arrBoard[0].length();
             double h = H / arrBoard.length - 1; // without the 'done'
 
-            //InitCoordinatesPixels(arrBoard[0].length(), arrBoard.length - 1);
 
             Image FImage = null;
             Image LImage = null;
@@ -222,9 +207,11 @@ public class BoardDisplayer extends Canvas {
 
             gc.clearRect(0, 0, W, H);
 
+            pipesBoard = new PipeBoardView(h,w,board);
+
             for (int i = 0 ; i < arrBoard.length - 1; i++){
                 for (int j = 0 ; j < arrBoard[i].length(); j++){
-                    char cell = arrBoard[i].charAt(j);
+                    char cell = pipesBoard.getBoard()[i][j].getVal();
                     switch (cell){
                         case 'L': {
                             if (LImage != null){
@@ -281,12 +268,6 @@ public class BoardDisplayer extends Canvas {
                             break;
                         }
                     }
-
-                    // Set coordinates for the cell (later for mouse click indication)
-                    /*coordinatesPixels[i][j].put("startX", j*w);
-                    coordinatesPixels[i][j].put("startY", i*h);
-                    coordinatesPixels[i][j].put("endX", j*w + w);
-                    coordinatesPixels[i][j].put("endY", i*h + h);*/
                 }
             }
         }
