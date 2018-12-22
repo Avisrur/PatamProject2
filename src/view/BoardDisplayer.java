@@ -51,13 +51,13 @@ public class BoardDisplayer extends Canvas {
     @Override
     public double minWidth(double height)
     {
-        return 0;
+        return 300;
     }
 
     @Override
     public double maxWidth(double height)
     {
-        return 10000;
+        return 100000;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class BoardDisplayer extends Canvas {
     {
         super.setWidth(width);
         super.setHeight(height);
-        paint();
+        redraw();
     }
 
     public String getStartFileName() {

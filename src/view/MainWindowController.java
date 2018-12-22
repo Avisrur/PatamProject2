@@ -31,11 +31,6 @@ public class MainWindowController implements Initializable{
             // extract the clicked image.
             //if ()
         });
-
-        this.boardDisplayer.widthProperty().addListener((observableValue) ->
-                this.boardDisplayer.redraw());
-        this.boardDisplayer.heightProperty().addListener((observableValue) ->
-                this.boardDisplayer.redraw());
     }
     public void Message(String n) {
         switch(n){
