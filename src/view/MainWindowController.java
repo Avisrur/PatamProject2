@@ -25,10 +25,10 @@ public class MainWindowController implements Initializable{
             double x = event.getSceneX();
             double y = event.getSceneY();
 
-            HashMap<String, Number>[][] boardCoordinates = this.boardDisplayer.getCoordinatesPixels();
+//            HashMap<String, Number>[][] boardCoordinates = this.boardDisplayer.getCoordinatesPixels();
 
             // extract the clicked image.
-            if ()
+//            if ()
         });
     }
     public void Message(String n) {
