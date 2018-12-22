@@ -4,29 +4,55 @@ import board.Location;
 
 import java.util.HashMap;
 
-public class PipeBoardView extends BoardView {
+public class PipeBoardView {
 
+    private String id;
+    private PipeView[][] board;
+    private Double height;
+    private Double width;
     private Location start;
     private Location end;
 
-    public PipeBoardView(Double height,Double width,PipeView[][] board) {
-        super(height,width,board);
+    public PipeBoardView(Double height, Double width, PipeView[][] board) {
+
     }
 
-    public PipeBoardView(Double height,Double width,PipeBoardView tmpBoard) {
-        super(height,width);
+
+    public PipeBoardView(Double height, Double width, PipeBoardView tmpBoard) {
+        setWidthAndHeight(height, width);
         setBoard(tmpBoard.getBoard());
-        setId(tmpBoard);
+        setId(tmpBoard.toString());
         setStart(tmpBoard.findStartLocation());
         setEnd(tmpBoard.findEndLocation());
     }
 
-    public PipeBoardView(Double height,Double width,String board) {
-        super(height,width);
+    public PipeBoardView(Double height, Double width, String board) {
+        setWidthAndHeight(height, width);
         setBoard(this.toBoard(board));
         setId(board);
         setStart(this.findStartLocation());
         setEnd(this.findEndLocation());
+    }
+
+    private void setWidthAndHeight(Double height, Double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    private void setId(String board) {
+        this.id = String.valueOf(board.hashCode());
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(PipeBoardView board) {
+        this.id = String.valueOf(board.getId());
+    }
+
+    public PipeView[][] getBoard() {
+        return board;
     }
 
     public PipeView getPipeView(Location loc) {
@@ -81,7 +107,7 @@ public class PipeBoardView extends BoardView {
         this.end = new Location(end);
     }
 
-    @Override
+
     void setAllowedSteps() {
 
         HashMap<Character, String> top = new HashMap<Character, String>() {{
@@ -114,7 +140,7 @@ public class PipeBoardView extends BoardView {
         }};
     }
 
-    @Override
+
     void setBoard(PipeView[][] tmpBoard) {
         try {
             Integer row = tmpBoard.length;
@@ -122,7 +148,7 @@ public class PipeBoardView extends BoardView {
             this.board = new PipeView[row][col];
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < col; j++) {
-                    this.board[i][j] = new PipeView(height,width,tmpBoard[i][j]);
+                    this.board[i][j] = new PipeView(height, width, tmpBoard[i][j]);
                 }
             }
         } catch (Exception e) {
@@ -130,7 +156,7 @@ public class PipeBoardView extends BoardView {
         }
     }
 
-    @Override
+
     public PipeView[][] toBoard(String stringBoard) {
         PipeView[][] convertedBoard = null;
         try {
@@ -142,7 +168,7 @@ public class PipeBoardView extends BoardView {
                 throw new Exception("rows are negative");
             }
 
-            if (cols <= 0){
+            if (cols <= 0) {
                 throw new Exception("cols are negative");
             }
 
@@ -154,17 +180,17 @@ public class PipeBoardView extends BoardView {
                     throw new Exception("line is null: " + i);
                 }
                 for (int j = 0; j < cols; j++) {
-                    convertedBoard[i][j] = new PipeView(height,width,line.charAt(j),new Location(i, j));
+                    convertedBoard[i][j] = new PipeView(height, width, line.charAt(j), new Location(i, j));
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("PipeViewsBoard.toBoard(): " + e.getMessage());
         }
 
         return convertedBoard;
     }
 
-    @Override
+
     public Boolean isValidLocation(Location loc) {
         return (loc != null & loc.getRow() < this.board.length && loc.getCol() < this.board[0].length && loc.getCol() >= 0 && loc.getRow() >= 0);
     }
