@@ -6,6 +6,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class BoardDisplayer extends Canvas {
     private String board;
     private StringProperty FPipeFileName;
@@ -109,17 +113,17 @@ public class BoardDisplayer extends Canvas {
             Image pipeLineImage = null;
             Image wallImage = null;
 
-//            try {
-//                FImage = new Image(new FileInputStream(new File(getFPipeFileName())));
-//                LImage = new Image(new FileInputStream(new File(getLPipeFileName())));
-//                JImage = new Image(new FileInputStream(new File(getJPipeFileName())));
-//                sevenImage = new Image(new FileInputStream(new File(getSevenPipeFileName())));
-//                dashImage = new Image(new FileInputStream(new File(getDashPipeFileName())));
-//                pipeLineImage = new Image(new FileInputStream(new File(getPipeLinePipeFileName())));
-//                wallImage = new Image(new FileInputStream(new File(getWallFileName())));
-//            } catch (FileNotFoundException e){
-//                e.printStackTrace();
-//            }
+            try {
+                FImage = new Image(new FileInputStream(new File(getFPipeFileName())));
+                LImage = new Image(new FileInputStream(new File(getLPipeFileName())));
+                JImage = new Image(new FileInputStream(new File(getJPipeFileName())));
+                sevenImage = new Image(new FileInputStream(new File(getSevenPipeFileName())));
+                dashImage = new Image(new FileInputStream(new File(getDashPipeFileName())));
+                pipeLineImage = new Image(new FileInputStream(new File(getPipeLinePipeFileName())));
+                wallImage = new Image(new FileInputStream(new File(getWallFileName())));
+            } catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
 
             GraphicsContext gc = getGraphicsContext2D();
 
@@ -129,7 +133,7 @@ public class BoardDisplayer extends Canvas {
 
             for (int i = 0 ; i < arrBoard.length - 1; i++){
                 for (int j = 0 ; j < arrBoard[i].length(); j++){
-                    char cell = arrBoard[i].charAt(j);
+                    char cell = pipesBoard.getBoard()[i][j].getVal();
                     switch (cell){
                         case 'L': {
                             if (LImage != null){
