@@ -25,8 +25,8 @@ public class Main extends Application {
             BorderPane root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Scene scene = new Scene(root, 400, 400);
 
-            scene.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> System.out.println("Width: " + newSceneWidth));
-            scene.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> System.out.println("Height: " + newSceneHeight));
+            /*scene.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> System.out.println("Width: " + newSceneWidth));
+            scene.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> System.out.println("Height: " + newSceneHeight));*/
 
             primaryStage.setScene(scene);
             primaryStage.show();
