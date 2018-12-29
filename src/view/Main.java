@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import server.MyServer;
 
 public class Main extends Application {
+    public static Stage active;
 
     public static void main(String[] args) {
         launch(args);
@@ -19,6 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            this.active = primaryStage;
             MyServer s = new MyServer(8000,10);
             s.start(new MyClient());
 

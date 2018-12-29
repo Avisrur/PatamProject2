@@ -99,6 +99,27 @@ public class PipeView {
         }
     }
 
+    public Character rotate() {
+        try {
+            if (this.val != 's' && this.val != 'g' && this.val != ' ') {
+                try {
+                    setVal(this.rotateMap.get(this.val));
+                } catch (NullPointerException e) {
+                    System.out.println("Null ");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Pipe.Rotate :" + e.getMessage());
+        }
+        return getVal();
+    }
+
+    public Character rotate(Integer num) {
+        Character updatedVal = ' ';
+
+        return updatedVal;
+    }
+
     public boolean isEmpty() {
         return (this.val == ' ');
     }

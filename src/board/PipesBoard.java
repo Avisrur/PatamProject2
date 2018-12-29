@@ -41,8 +41,8 @@ public class PipesBoard extends Board {
     }
 
     public Location findStartLocation() {
-        for (int i = 0; i <= this.board.length; i++) {
-            for (int j = 0; j <= this.board[0].length; j++) {
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[0].length; j++) {
                 if (this.board[i][j].getVal() == 's') {
                     return new Location(i, j);
                 }

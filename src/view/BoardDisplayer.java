@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class BoardDisplayer extends Canvas {
     private String board;
@@ -24,7 +23,10 @@ public class BoardDisplayer extends Canvas {
     private PipeBoardView pipesBoard;
     private StringProperty startFileName;
     private StringProperty goalFileName;
-    private HashMap<String, Number>[][] coordinatesPixels;
+    private double w;
+    private double h;
+    private double W;
+    private double H;
 
     @Override
     public double minHeight(double width)
@@ -67,7 +69,21 @@ public class BoardDisplayer extends Canvas {
     {
         super.setWidth(width);
         super.setHeight(height);
-        redraw();
+        W = width;
+        H = height;
+        w = W / pipesBoard.getBoard()[0].length;
+        h = H / pipesBoard.getBoard().length;
+
+        PipeBoardView newBoard = new PipeBoardView(h, w, this.pipesBoard.toString());
+        this.setBoard(newBoard);
+    }
+
+    public PipeBoardView getPipesBoard() {
+        return pipesBoard;
+    }
+
+    public void setPipesBoard(PipeBoardView pipesBoard) {
+        this.pipesBoard = pipesBoard;
     }
 
     public String getStartFileName() {
@@ -157,20 +173,22 @@ public class BoardDisplayer extends Canvas {
 
     public void setBoard(String board){
         this.board = board;
+        String[] arrBoard = board.split("\n");
+        W = getWidth();
+        H = getHeight();
+        w = W / arrBoard[0].length();
+        h = H / arrBoard.length - 1; // without the 'done'
+        pipesBoard = new PipeBoardView(h,w,board);
         redraw();
     }
 
+    public void setBoard(PipeBoardView pipesBoarda){
+        pipesBoard = pipesBoarda;
+        redraw();
+    }
 
     public void redraw() {
-        if (board != null){
-
-            String[] arrBoard = board.split("\n");
-            double W = getWidth();
-            double H = getHeight();
-
-            double w = W / arrBoard[0].length();
-            double h = H / arrBoard.length - 1; // without the 'done'
-
+        if (pipesBoard != null){
 
             Image FImage = null;
             Image LImage = null;
@@ -204,13 +222,13 @@ public class BoardDisplayer extends Canvas {
             }
 
             GraphicsContext gc = getGraphicsContext2D();
-
             gc.clearRect(0, 0, W, H);
 
-            pipesBoard = new PipeBoardView(h,w,board);
+            int rows = pipesBoard.getBoard().length;
+            int cols = pipesBoard.getBoard()[0].length;
 
-            for (int i = 0 ; i < arrBoard.length - 1; i++){
-                for (int j = 0 ; j < arrBoard[i].length(); j++){
+            for (int i = 0 ; i < rows; i++){
+                for (int j = 0 ; j < cols; j++){
                     char cell = pipesBoard.getBoard()[i][j].getVal();
                     switch (cell){
                         case 'L': {
