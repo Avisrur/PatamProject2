@@ -2,8 +2,6 @@ package view;
 
 import board.Location;
 
-import java.util.HashMap;
-
 public class PipeBoardView {
 
     private String id;
@@ -69,8 +67,8 @@ public class PipeBoardView {
     }
 
     public Location findStartLocation() {
-        for (int i = 0; i <= this.board.length; i++) {
-            for (int j = 0; j <= this.board[0].length; j++) {
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[0].length; j++) {
                 if (this.board[i][j].getVal() == 's') {
                     return new Location(i, j);
                 }
@@ -106,40 +104,6 @@ public class PipeBoardView {
         this.end = new Location(end);
     }
 
-
-    void setAllowedSteps() {
-
-        HashMap<Character, String> top = new HashMap<Character, String>() {{
-            put('|', "|gF7fG");
-            put('L', "F7g|fG");
-            put('J', "Fg|7Gf");
-            put('s', "7F|gfG");
-            put('S', "7F|gfG");
-        }};
-        HashMap<Character, String> bottom = new HashMap<Character, String>() {{
-            put('|', "|gLJGjl");
-            put('F', "|JgLjlG");
-            put('7', "|JLgjlG");
-            put('s', "LJ|gjlG");
-            put('S', "LJ|gjlG");
-        }};
-        HashMap<Character, String> right = new HashMap<Character, String>() {{
-            put('L', "J7g-Gj");
-            put('F', "J7g-Gj");
-            put('-', "J7g-Gj");
-            put('s', "J7g-Gj");
-            put('S', "J7g-Gj");
-        }};
-        HashMap<Character, String> left = new HashMap<Character, String>() {{
-            put('-', "-gFLflG");
-            put('J', "-gFLflG");
-            put('7', "-gFLflG");
-            put('S', "-gFLflG");
-            put('s', "-gFLflG");
-        }};
-    }
-
-
     void setBoard(PipeView[][] tmpBoard) {
         try {
             Integer row = tmpBoard.length;
@@ -160,7 +124,7 @@ public class PipeBoardView {
         PipeView[][] convertedBoard = null;
         try {
             String[] lines = stringBoard.split("\n");
-            Integer rows = lines.length;
+            Integer rows = lines[lines.length - 1].equals("done") ? lines.length - 1 : lines.length;
             Integer cols = lines[0].length();
 
             if (rows <= 0) {
@@ -212,5 +176,40 @@ public class PipeBoardView {
             System.out.println("MatrixBoard.equals(): Error details: " + ex.getMessage());
         }
         return isEqual;
+    }
+
+    public PipeView getPipeViewByPixels(double x, double y){
+        int rows = this.getBoard().length;
+        int cols = this.getBoard()[0].length;
+
+        for (int i= 0 ; i < rows; i++){
+            for ( int j = 0; j < cols; j++){
+                if (x > this.getBoard()[i][j].pixels.get("startX")
+                        && x < this.getBoard()[i][j].pixels.get("endX")
+                        && y > this.getBoard()[i][j].pixels.get("startY")
+                        && y < this.getBoard()[i][j].pixels.get("endY")){
+                    return this.getBoard()[i][j];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public String toString(){
+        int rows = board.length;
+        int cols = board[0].length;
+
+        String stringBoard = "";
+
+        for (int i= 0 ; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                stringBoard += board[i][j].getVal();
+            }
+
+            stringBoard+= "\n";
+        }
+
+        return stringBoard;
     }
 }

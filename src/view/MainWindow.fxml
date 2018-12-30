@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import view.BoardDisplayer?>
-<BorderPane xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+<BorderPane prefHeight="450.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -12,7 +13,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open Level" />
                   <MenuItem mnemonicParsing="false" onAction="#saveLevel" text="Save Level" />
                   <MenuItem mnemonicParsing="false" onAction="#changeTheme" text="Change Theme..." />
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Close" onAction="#closeWindow"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Others">
@@ -22,11 +23,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-                  <Menu mnemonicParsing="false" onAction="#solveLevel" text="Solve Level">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                    </items>
-                  </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#solveLevel" text="Solve Level" />
             </items>
           </Menu>
         </menus>
@@ -35,21 +32,36 @@
    <bottom>
       <HBox prefHeight="19.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Status" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Steps:" />
+                  <Label fx:id="numberOfSteps" text="[StepsVal]" />
+               </children>
+            </HBox>
+            <Label text="Time:" />
+            <Label fx:id="timerLabel" text="[TimeVal]" />
          </children>
       </HBox>
    </bottom>
    <center>
        <BoardDisplayer fx:id="boardDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER"
-                       FPipeFileName="./resources/FPipe.png"
-                       LPipeFileName="./resources/LPipe.png"
-                       JPipeFileName="./resources/JPipe.png"
-                       sevenPipeFileName="./resources/7Pipe.png"
-                       dashPipeFileName="./resources/-Pipe.png"
-                       pipeLinePipeFileName="./resources/pipeLinePipe.png"
-                       wallFileName="./resources/wall.jpg"
-                       startFileName="./resources/Start.png"
-                       goalFileName="./resources/Goal.png"/>
-      <!--<Canvas height="400.0" width="400.0" BorderPane.alignment="CENTER"/>-->
+                       FPipeFileName="./resources/Themes/Light/FPipe.png"
+                       LPipeFileName="./resources/Themes/Light/LPipe.png"
+                       JPipeFileName="./resources/Themes/Light/JPipe.png"
+                       sevenPipeFileName="./resources/Themes/Light/7Pipe.png"
+                       dashPipeFileName="./resources/Themes/Light/-Pipe.png"
+                       pipeLinePipeFileName="./resources/Themes/Light/pipeLinePipe.png"
+                       wallFileName="./resources/Themes/Light/wall.png"
+                       startFileName="./resources/Themes/Light/Start.png"
+                       goalFileName="./resources/Themes/Light/Goal.png"
+       />
+      <!--<Canvas height="350.0" width="350.0" BorderPane.alignment="TOP_LEFT" />-->
    </center>
+   <right>
+      <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="78.0" prefWidth="75.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Done" onAction="#handleDone" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

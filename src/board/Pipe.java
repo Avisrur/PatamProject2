@@ -113,7 +113,7 @@ public class Pipe {
 
     public Character rotate(Integer num) {
         Character updatedVal = ' ';
-        for (int i = 0; i < num % 3; i++) {
+        for (int i = 0; i < num ; i++) {
             updatedVal = this.rotate();
         }
         return updatedVal;

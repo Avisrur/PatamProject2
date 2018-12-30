@@ -8,14 +8,11 @@ import board.Step;
 import cache.CacheManager;
 import cache.FileHandler;
 import search.BFS;
-import search.BestFirstSearch;
-import search.DFS;
 import solver.PipeGameSolver;
 import solver.Solution;
 import solver.Solver;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
 public class MyClient implements ClientHandler {
 
@@ -25,7 +22,7 @@ public class MyClient implements ClientHandler {
     private Board board;
 
     public MyClient(){
-        this.pipeGameSolver = new PipeGameSolver(new BestFirstSearch());
+        this.pipeGameSolver = new PipeGameSolver(new BFS());
     }
 
     /*public MyClient(CacheManager fileCacheMamager, Solver pipeGameSolver) {
